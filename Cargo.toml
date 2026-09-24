@@ -1,0 +1,9 @@
+[package]
+name = "level-devil"
+version = "1.0.0"
+edition = "2021"
+description = "Terminal troll-platformer homage to Level Devil"
+license = "MIT"
+
+[dependencies]
+crossterm = "0.28"
