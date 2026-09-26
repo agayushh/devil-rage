@@ -2,8 +2,49 @@
 name = "level-devil"
 version = "1.0.0"
 edition = "2021"
-description = "Terminal troll-platformer homage to Level Devil"
+description = "Browser troll-platformer homage to Level Devil"
 license = "MIT"
 
+[lib]
+crate-type = ["cdylib", "rlib"]
+
 [dependencies]
-crossterm = "0.28"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+console_error_panic_hook = "0.1"
+js-sys = "0.3"
+wasm-bindgen = "0.2"
+web-sys = { version = "0.3", features = [
+    "AddEventListenerOptions",
+    "AudioContext",
+    "AudioDestinationNode",
+    "AudioNode",
+    "AudioParam",
+    "BaseAudioContext",
+    "CanvasRenderingContext2d",
+    "CssStyleDeclaration",
+    "Document",
+    "DomRect",
+    "Element",
+    "Event",
+    "EventTarget",
+    "GainNode",
+    "HtmlCanvasElement",
+    "HtmlElement",
+    "KeyboardEvent",
+    "MediaQueryList",
+    "Node",
+    "NodeList",
+    "OscillatorNode",
+    "OscillatorType",
+    "PointerEvent",
+    "Storage",
+    "Window",
+] }
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
