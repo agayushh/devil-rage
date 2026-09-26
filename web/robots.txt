@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# One page. The canonical URL is the address you serve this site from.

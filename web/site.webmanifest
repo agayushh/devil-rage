@@ -1,0 +1,25 @@
+{
+  "name": "Level Devil",
+  "short_name": "Level Devil",
+  "description": "A free troll platformer in the browser. Floors vanish, doors lie, and coins bite.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#986b06",
+  "theme_color": "#3d220c",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

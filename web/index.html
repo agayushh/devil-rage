@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Level Devil — free browser troll platformer</title>
+  <meta name="description" content="Play Level Devil free in your browser. A short troll platformer where floors vanish, doors lie, and coins explode. No download. Keyboard or touch.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#4a2e08">
+  <meta name="color-scheme" content="dark">
+  <meta name="apple-mobile-web-app-title" content="Level Devil">
+  <meta name="application-name" content="Level Devil">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Level Devil — free browser troll platformer">
+  <meta property="og:description" content="Play Level Devil free in your browser. Floors vanish, doors lie, and coins explode. No download.">
+  <meta property="og:image:alt" content="Level Devil, a troll platformer you play in the browser">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Level Devil — free browser troll platformer">
+  <meta name="twitter:description" content="Play Level Devil free in your browser. Floors vanish, doors lie, and coins explode. No download.">
+  <link data-trunk rel="rust" href="../Cargo.toml" data-wasm-opt="0">
+  <link data-trunk rel="copy-file" href="robots.txt">
+  <link data-trunk rel="copy-file" href="site.webmanifest">
+  <link data-trunk rel="copy-file" href="favicon.svg">
+  <link data-trunk rel="copy-file" href="og.png">
+  <link data-trunk rel="copy-file" href="icon-180.png">
+  <script type="application/ld+json" id="ld">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "#website",
+        "name": "Level Devil",
+        "inLanguage": "en",
+        "description": "A free troll platformer in the browser. Floors vanish, doors lie, and coins bite."
+      },
+      {
+        "@type": "WebPage",
+        "@id": "#webpage",
+        "name": "Level Devil — free browser troll platformer",
+        "isPartOf": { "@id": "#website" },
+        "inLanguage": "en",
+        "description": "Play Level Devil free in your browser. A short troll platformer where floors vanish, doors lie, and coins explode. No download. Keyboard or touch."
+      },
+      {
+        "@type": "VideoGame",
+        "name": "Level Devil",
+        "description": "A short single-player troll platformer. Floors disappear, doors are traps, and the safe path is usually the one that looks wrong. Play it free in a web browser.",
+        "genre": ["Platformer", "Indie", "Puzzle"],
+        "playMode": "SinglePlayer",
+        "gamePlatform": "Web browser",
+        "operatingSystem": "Any",
+        "applicationCategory": "Game",
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "browserRequirements": "Requires JavaScript and an HTML canvas.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is Level Devil free to play?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. It runs in your browser with no download, account, or payment."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I control Level Devil?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Arrow keys or A and D move. W, Up, or Space jumps. Esc pauses. R retries. On a phone, use the on-screen buttons."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does progress save?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Progress, deaths, and keys are stored in this browser on this device. Clearing site data resets the game."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What kind of game is Level Devil?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A short precision platformer that lies to you. Floors disappear, doors are traps, and the safe path is usually the one that looks wrong."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this the original Level Devil?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. This is an original homage with its own campaign. It is not affiliated with Unept."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I play on a phone?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The page has on-screen buttons for touch, and keyboard controls for a computer."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <script>
+    (function () {
+      var path = location.pathname.replace(/index\.html$/, "");
+      if (path.charAt(path.length - 1) !== "/") path += "/";
+      var url = location.origin + path;
+      var image = url + "og.png";
+      var canonical = document.createElement("link");
+      canonical.rel = "canonical";
+      canonical.href = url;
+      document.head.appendChild(canonical);
+      [
+        ["property", "og:url", url],
+        ["property", "og:image", image],
+        ["property", "og:image:width", "1200"],
+        ["property", "og:image:height", "630"],
+        ["name", "twitter:image", image]
+      ].forEach(function (row) {
+        var meta = document.createElement("meta");
+        meta.setAttribute(row[0], row[1]);
+        meta.setAttribute("content", row[2]);
+        document.head.appendChild(meta);
+      });
+      var ld = document.getElementById("ld");
+      if (!ld) return;
+      try {
+        var data = JSON.parse(ld.textContent);
+        (data["@graph"] || []).forEach(function (node) {
+          node.url = url;
+          if (node["@type"] === "VideoGame" || node["@type"] === "WebPage") node.image = image;
+        });
+        ld.textContent = JSON.stringify(data);
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #4a2e08;
+      color: #fff6e8;
+      font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+      overscroll-behavior: none;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .sr-only, .crawl {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    #stage {
+      position: fixed;
+      inset: 0;
+      height: 100dvh;
+      background: #4a2e08;
+    }
+    #game {
+      display: block;
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+      cursor: default;
+      outline: none;
+    }
+    #game:focus, #game:focus-visible { outline: none; }
+    #boot {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      margin: 0;
+      color: #fff6e8;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      pointer-events: none;
+    }
+    #boot[hidden] { display: none; }
+    #pad {
+      display: none;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      touch-action: none;
+    }
+    #pad button {
+      pointer-events: auto;
+      position: absolute;
+      width: 96px;
+      height: 96px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(20, 12, 8, 0.78);
+      color: #fff6e8;
+      font: 700 30px/1 ui-sans-serif, system-ui, sans-serif;
+      touch-action: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    #pad button:active { background: #ffd65a; color: #140c08; }
+    #pad [data-k="Left"] { left: max(18px, env(safe-area-inset-left)); bottom: calc(36px + env(safe-area-inset-bottom)); }
+    #pad [data-k="Right"] { left: calc(max(18px, env(safe-area-inset-left)) + 112px); bottom: calc(36px + env(safe-area-inset-bottom)); }
+    #pad [data-k="Space"] {
+      right: max(20px, env(safe-area-inset-right));
+      bottom: calc(48px + env(safe-area-inset-bottom));
+      width: 118px;
+      height: 118px;
+      background: rgba(143, 29, 18, 0.92);
+    }
+    #pad [data-k="Esc"], #pad [data-k="R"] {
+      top: calc(14px + env(safe-area-inset-top));
+      width: 58px;
+      height: 58px;
+      font-size: 16px;
+    }
+    #pad [data-k="R"] { right: max(16px, env(safe-area-inset-right)); }
+    #pad [data-k="Esc"] { right: calc(max(16px, env(safe-area-inset-right)) + 70px); }
+    @media (pointer: coarse) {
+      #pad { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <header class="crawl" inert>
+    <h1>Level Devil</h1>
+    <p>A free troll platformer in the browser. Floors vanish, doors lie, and coins bite.</p>
+  </header>
+  <div id="stage">
+    <canvas id="game" width="1280" height="720" role="application" aria-roledescription="game" aria-label="Level Devil. Arrow keys or A and D move. W, Up, or Space jumps. Esc pauses. R retries.">Level Devil plays on this canvas. Arrow keys or A and D move. W, Up, or Space jumps.</canvas>
+    <p id="boot">Loading the game…</p>
+    <div id="pad" aria-label="Touch controls">
+      <button type="button" data-k="Left" aria-label="Move left">◀</button>
+      <button type="button" data-k="Right" aria-label="Move right">▶</button>
+      <button type="button" data-k="Space" aria-label="Jump">▲</button>
+      <button type="button" data-k="Esc" aria-label="Pause or go back">II</button>
+      <button type="button" data-k="R" aria-label="Retry the stage">R</button>
+    </div>
+  </div>
+  <p id="live" class="sr-only" aria-live="polite"></p>
+  <main id="guide" class="crawl" inert>
+    <noscript>
+      <p>The game canvas needs JavaScript. The guide below still covers the controls, the worlds, and how saving works.</p>
+    </noscript>
+    <h2 id="how-to-play">How to play</h2>
+    <p>Level Devil is a short precision platformer you play in the tab you already have open. You run, you jump, and the stage disagrees with you. A floor can be a rumor. A door can be a trap. A coin can be a fuse. The campaign is a sequence of small rooms, five stages to a door, and the joke is that the obvious path is usually the wrong one.</p>
+    <ul>
+      <li><strong>Move</strong> with the arrow keys, or A and D.</li>
+      <li><strong>Jump</strong> with W, Up, or Space. Hold the key for the full hop.</li>
+      <li><strong>Pause</strong> with Esc or P. <strong>Retry</strong> with R.</li>
+      <li>On a phone or tablet, use the Left, Right, and Jump buttons on the game.</li>
+      <li>Click a menu row, or use the arrow keys and Enter.</li>
+      <li>After four deaths on a stage that allows it, S skips ahead.</li>
+    </ul>
+    <p>Progress stays in this browser. Keys you pick up, doors you open, and the death count are written to local storage on this device. There is no account.</p>
+    <h2 id="worlds">Worlds</h2>
+    <p>Three worlds, then a locked door that only answers after the keys are found. Thirteen keys are hidden in the campaign.</p>
+    <h3>Level Devil</h3>
+    <p>Every floor is a rumor. The doors are Floor, Spikes, Motion, Liars, and Threshold. This is the introduction: walk, then don't trust the walk.</p>
+    <h3>Level Devil-er</h3>
+    <p>The rules walked out. Burn, Ballistics, and House Rules add guns, bombs, and buttons that confess more than they should.</p>
+    <h3>Level Devil-est</h3>
+    <p>Bring someone to die with. Company and Glitch put a second body in the room. Your shadow is not on your side.</p>
+    <h3>The true door</h3>
+    <p>It stays locked until the keys are collected. The settings menu knows a rhythm in the arrow keys. That is the only hint the game is willing to give in writing.</p>
+    <h2 id="questions">Questions</h2>
+    <h3>Is Level Devil free to play?</h3>
+    <p>Yes. It runs in your browser with no download, account, or payment.</p>
+    <h3>How do I control Level Devil?</h3>
+    <p>Arrow keys or A and D move. W, Up, or Space jumps. Esc pauses. R retries. On a phone, use the on-screen buttons.</p>
+    <h3>Does progress save?</h3>
+    <p>Yes. Progress, deaths, and keys are stored in this browser on this device. Clearing site data resets the game.</p>
+    <h3>What kind of game is Level Devil?</h3>
+    <p>A short precision platformer that lies to you. Floors disappear, doors are traps, and the safe path is usually the one that looks wrong.</p>
+    <h3>Is this the original Level Devil?</h3>
+    <p>No. This is an original homage with its own campaign. It is not affiliated with Unept.</p>
+    <h3>Can I play on a phone?</h3>
+    <p>Yes. The page has on-screen buttons for touch, and keyboard controls for a computer.</p>
+  </main>
+  <footer class="crawl" inert>
+    <p>Level Devil runs in the browser. Original levels, written as a homage.</p>
+  </footer>
+</body>
+</html>
