@@ -47,7 +47,7 @@ pub static CAMPAIGN: &[LevelDef] = &[
         hint: "stopping is how the floor wins",
         key: None,
         map: " @                                  D   \n######CCCCCCCCCCCCCCCCCCCCCCCCCC########",
-        traps: &[Trap::Delays { group: 0.22, solo: 0.50 }],
+        traps: &[Trap::Delays { group: 0.12, solo: 0.18 }],
     },
     LevelDef {
         world: 0,
@@ -127,7 +127,7 @@ pub static CAMPAIGN: &[LevelDef] = &[
         hint: "hesitation is edible",
         key: None,
         map: " @            ^         ^           D   \n########################################",
-        traps: &[Trap::Chase { row: 0, speed: 4.0 }],
+        traps: &[Trap::Chase { row: 0, speed: 7.2 }],
     },
     LevelDef {
         world: 0,
@@ -137,7 +137,7 @@ pub static CAMPAIGN: &[LevelDef] = &[
         hint: "it has somewhere to be. so do you",
         key: None,
         map: "                                        \n                                        \n @                                  D   \n########################################",
-        traps: &[Trap::Wall { x: 22.0, y: 2.0, w: 2.0, h: 1.0, tx: 4.0, ty: 2.0, speed: 6.5, at: 6.0 }],
+        traps: &[Trap::Wall { x: 22.0, y: 2.0, w: 2.0, h: 1.0, tx: 4.0, ty: 2.0, speed: 9.0, at: 3.0 }],
     },
     LevelDef {
         world: 0,
@@ -717,7 +717,7 @@ mod tests {
 
     #[test]
     fn rehearse_opening() {
-        rehearse(find(0, 0, 0).unwrap(), &[(1.05, 1, false), (0.75, 1, true), (1.6, 1, false)]).unwrap();
+        rehearse(find(0, 0, 0).unwrap(), &[(0.72, 1, false), (0.65, 1, true), (2.0, 1, false)]).unwrap();
     }
 
     #[test]
@@ -727,7 +727,7 @@ mod tests {
 
     #[test]
     fn rehearse_reverse() {
-        rehearse(find(0, 2, 4).unwrap(), &[(1.15, -1, false), (0.7, -1, true), (1.6, -1, false)]).unwrap();
+        rehearse(find(0, 2, 4).unwrap(), &[(0.90, -1, false), (0.62, -1, true), (2.0, -1, false)]).unwrap();
     }
 
     #[test]
@@ -781,6 +781,9 @@ mod tests {
             vec![(0.8, 0, false), (1.05, 1, false), (0.5, 1, true), (3.0, 1, false)],
             vec![(1.6, 0, false), (1.05, 1, false), (0.5, 1, true), (3.0, 1, false)],
             vec![(2.0, 1, true), (0.85, 1, false), (0.5, 1, true), (2.2, 1, false)],
+            vec![(0.75, 1, false), (0.45, 1, true), (0.45, 1, false), (0.45, 1, true), (3.5, 1, false)],
+            vec![(0.75, -1, false), (0.45, -1, true), (0.45, -1, false), (0.45, -1, true), (3.5, -1, false)],
+            vec![(2.35, 1, false), (0.55, 1, true), (2.5, 1, false)],
         ];
         for dir in [1i8, -1] {
             let mut hop = Vec::new();
@@ -800,7 +803,7 @@ mod tests {
             return true;
         }
         for &wait in &[0.0f32, 0.7, 1.4, 2.2] {
-            for &run in &[0.5f32, 1.0, 1.6, 2.3] {
+            for &run in &[0.45f32, 0.75, 1.05, 1.4, 1.75, 2.1, 2.4, 2.7, 3.05, 3.4] {
                 for &hold in &[0.4f32, 0.6] {
                     let one = [(wait, 0, false), (run, 1, false), (hold, 1, true), (4.0, 1, false)];
                     if rehearse(def, &one).is_ok() {

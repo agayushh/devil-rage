@@ -1,18 +1,23 @@
-//! Shared types, tuning, and the on-disk save.
+//! Shared types, tuning, and the save (a file on native, local storage in the browser).
 
+#[cfg(not(target_arch = "wasm32"))]
 use std::fs;
+#[cfg(not(target_arch = "wasm32"))]
 use std::path::PathBuf;
 
-pub const GRAVITY: f32 = 36.0;
-pub const JUMP_V: f32 = 13.0;
-pub const MOVE_SPEED: f32 = 9.0;
-pub const ACCEL: f32 = 85.0;
-pub const FRICTION: f32 = 110.0;
-pub const ICE_ACCEL: f32 = 14.0;
-pub const ICE_FRICTION: f32 = 3.2;
-pub const MAX_FALL: f32 = 22.0;
-pub const COYOTE: f32 = 0.09;
-pub const JUMP_BUFFER: f32 = 0.10;
+#[cfg(target_arch = "wasm32")]
+const STORE_KEY: &str = "level-devil-save";
+
+pub const GRAVITY: f32 = 52.0;
+pub const JUMP_V: f32 = 14.4;
+pub const MOVE_SPEED: f32 = 11.2;
+pub const ACCEL: f32 = 340.0;
+pub const FRICTION: f32 = 280.0;
+pub const ICE_ACCEL: f32 = 16.0;
+pub const ICE_FRICTION: f32 = 2.8;
+pub const MAX_FALL: f32 = 28.0;
+pub const COYOTE: f32 = 0.06;
+pub const JUMP_BUFFER: f32 = 0.09;
 pub const SKIP_AFTER: u32 = 4;
 pub const SAVE_VER: u32 = 1;
 
@@ -174,6 +179,7 @@ impl Default for Save {
 }
 
 impl Save {
+    #[cfg(not(target_arch = "wasm32"))]
     pub fn path() -> PathBuf {
         if let Ok(home) = std::env::var("HOME") {
             PathBuf::from(home).join(".local/share/level-devil/save.txt")
@@ -182,6 +188,7 @@ impl Save {
         }
     }
 
+    #[cfg(not(target_arch = "wasm32"))]
     pub fn load() -> Self {
         let path = Self::path();
         match fs::read_to_string(&path) {
@@ -190,12 +197,38 @@ impl Save {
         }
     }
 
+    #[cfg(target_arch = "wasm32")]
+    pub fn load() -> Self {
+        let Some(window) = web_sys::window() else {
+            return Self::default();
+        };
+        let Ok(Some(store)) = window.local_storage() else {
+            return Self::default();
+        };
+        match store.get_item(STORE_KEY) {
+            Ok(Some(text)) => Self::parse(&text).unwrap_or_default(),
+            _ => Self::default(),
+        }
+    }
+
+    #[cfg(not(target_arch = "wasm32"))]
     pub fn write(&self) {
         let path = Self::path();
         if let Some(dir) = path.parent() {
             let _ = fs::create_dir_all(dir);
         }
         let _ = fs::write(path, self.encode());
+    }
+
+    #[cfg(target_arch = "wasm32")]
+    pub fn write(&self) {
+        let Some(window) = web_sys::window() else {
+            return;
+        };
+        let Ok(Some(store)) = window.local_storage() else {
+            return;
+        };
+        let _ = store.set_item(STORE_KEY, &self.encode());
     }
 
     pub fn encode(&self) -> String {
@@ -284,6 +317,7 @@ pub enum Step {
     Done,
 }
 
+#[cfg_attr(not(target_arch = "wasm32"), allow(dead_code))]
 pub fn title_line(t: f32) -> &'static str {
     const LINES: &[&str] = &[
         "the door is lying",

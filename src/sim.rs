@@ -239,7 +239,7 @@ impl Sim {
             doors: Vec::new(),
             pops: built.pops,
             pop_at: 999.0,
-            pop_lead: 5.0,
+            pop_lead: 1.35,
             pop_t: 0.0,
             pop_armed: false,
             pop_live: false,
@@ -265,8 +265,8 @@ impl Sim {
             lie: false,
             no_skip: false,
             peace: false,
-            group_delay: 0.20,
-            solo_delay: 0.42,
+            group_delay: 0.10,
+            solo_delay: 0.18,
             won: false,
             lost: false,
             winner: None,
@@ -301,7 +301,7 @@ impl Sim {
                 y: y + 0.15,
                 phase: sim.ents.len() as f32 * 1.7,
                 range: 1.65,
-                speed: 2.05,
+                speed: 3.6,
                 base_x: x,
                 base_y: y,
             });
@@ -599,8 +599,7 @@ impl Sim {
         let accel = if a.on_ice {
             if stick.dir == 0 { ICE_FRICTION } else { ICE_ACCEL }
         } else if !a.on_ground {
-            // Keep the run through the jump so forward + jump is an arc.
-            if stick.dir == 0 { 8.0 } else { ACCEL }
+            if stick.dir == 0 { FRICTION * 0.72 } else { ACCEL }
         } else if stick.dir == 0 {
             FRICTION
         } else {
@@ -639,7 +638,7 @@ impl Sim {
             self.fuel = (self.fuel - dt).max(0.0);
             a.rising = false;
         } else if a.rising && !stick.jump_held && a.vy * self.grav < 0.0 {
-            a.vy *= 0.42;
+            a.vy *= 0.34;
             a.rising = false;
         }
 
@@ -1053,7 +1052,7 @@ impl Sim {
         }
         if self.pop_armed {
             self.pop_t += dt;
-            if self.pop_t > 0.10 {
+            if self.pop_t > 0.05 {
                 for &(x, y) in &self.pops.clone() {
                     if let Some(c) = self.cell_mut(x as i32, y as i32) {
                         if c.kind == Kind::Air {
@@ -1622,6 +1621,7 @@ impl Sim {
     }
 }
 
+#[cfg_attr(not(test), allow(dead_code))]
 pub fn rehearse(def: &LevelDef, steps: &[(f32, i8, bool)]) -> Result<(), String> {
     let mut sim = Sim::boot(def, &[], false).map_err(|e| e)?;
     sim.run_script(steps);
